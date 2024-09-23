@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://test.sciai.com.cn/api/sciai/v1.0/jc/'

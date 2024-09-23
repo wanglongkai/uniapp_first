@@ -19,7 +19,10 @@
     ],
     "types": [
       "@dcloudio/types"
-    ]
+    ],
+	"paths": {
+	  "@/*": ["/*"]
+	}
   },
   "exclude": [
     "node_modules",

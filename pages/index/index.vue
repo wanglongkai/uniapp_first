@@ -2,14 +2,25 @@
 	<view class="content">
 		<image class="logo" src="/static/logo.png"></image>
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<text class="title">{{BASE_URL}}</text>
 		</view>
+		<button @click="handleRequest">发送请求</button>
 	</view>
 </template>
 
 <script lang='ts' setup>
 	import {ref } from	'vue'
-	const title = ref('hello uniapp!')
+	import {BASE_URL} from '@/config'
+	import  request  from '@/http/request';
+	const formData = ref({
+		userName: '182898112',
+		password: 'Wlk45345353'
+	})
+	const handleRequest = () => {
+		request.POST('/login/login', formData.value).then((res: any) => {
+			console.log(res, 21)
+		})
+	}
 </script>
 
 <style scoped lang="scss">
