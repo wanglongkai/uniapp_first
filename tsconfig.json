@@ -13,6 +13,40 @@
     "allowSyntheticDefaultImports": true,
     "useDefineForClassFields": true,
     "resolveJsonModule": true,
+	
+	// 严格空值检查，
+	// 不开启，即默认情况下，如果没有声明类型的变量，被赋值为undefined或null，它们的类型会被推断为any
+	// 开启后，赋值为undefined的变量会被推断为undefined类型，赋值为null的变量会被推断为null类型。
+	"strictNullChecks": true,
+	
+	// 不允许自动推断为any类型，如果为any类型，必须显示声明；有个注意点，let和var声明变量如果不初始化，依旧可以自动推断为any
+	// any类型不仅能接受所有类型，同时any类型的值，也能随意赋值给其他类型，导致污染其他类型，其他类型也无法进行类型检查
+	"noImplicitAny": true, 
+	
+	/**
+	 * unknown类型和any类型的区别
+	 * unknown类型可以理解为严格版的any
+	 * unknown可以接受所有类型，但是不能随意赋值给其他类型，也就不会污染其他类型
+	 * unknown只能在类型缩小(更加确定其类型，比如 typeof 运算)后，该类型变量的值才能使用
+	 */
+	
+	/**
+	 * never类型
+	 * never类型可以赋值给任意其他类型，因为空集是任何集合的子集。
+	 * typeScript 就相应规定，任何类型都包含了never类型。
+	 * 因此，never类型是任何其他类型所共有的，TypeScript 把这种情况称为“底层类型”
+	 */
+	
+	/**
+	 * object类型
+	 * 根据 JavaScript 的设计，object 类型包含了所有对象、数组和函数。
+	 * const x: object = { foo: 123 };
+	   const y: object = [1, 2, 3];
+       const z: object = (n: number) => n + 1;
+	   
+	   上面示例中，对象、数组、函数都属于 object 类型。
+	 */
+	
     "lib": [
       "esnext",
       "dom"
