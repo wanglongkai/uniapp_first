@@ -1,7 +1,3 @@
-interface ob {
-	[prop: string]: any
-}
-
 class RequestManager {
 	idMap : Map<any, any>
 	constructor() {
@@ -55,10 +51,10 @@ class RequestManager {
 	 * @returns {string} - 序列化后的字符串
 	 */
 	serializeObject(obj : {
-	[prop: string]: any
-}) : string {
+		[prop : string] : any
+	}) : string {
 		const keys = Object.keys(obj).sort()
-		const serializedObj: any = {}
+		const serializedObj : any = {}
 		for (let key of keys) {
 			const value = obj[key]
 			if (value !== null && typeof value === 'object') {
