@@ -1,52 +1,87 @@
 <template>
-	<view class="content">
+	<view class="bg-content">
 		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{BASE_URL}}</text>
+		
+		<view class="login-form">
+			<view class="title">医疗机构登录</view>
+			<uni-forms ref="loginForm" :modelValue="loginFormData" :rules="rules">
+				<uni-forms-item label="用户名" required name="userName">
+					<uni-easyinput v-model="loginFormData.userName" placeholder="请输入用户名" />
+				</uni-forms-item>
+				<uni-forms-item label="密码" required name="password">
+					<uni-easyinput v-model="loginFormData.password" placeholder="请输入密码" />
+				</uni-forms-item>
+				<button type="primary" @click="submit">登录</button>
+			</uni-forms>
 		</view>
-		<button @click="handleRequest">发送请求</button>
 	</view>
 </template>
 
 <script lang='ts' setup>
-	import {ref } from	'vue'
-	import {BASE_URL} from '@/config'
-	import  request  from '@/http/request';
-	const formData = ref({
-		userName: '182898112',
-		password: 'Wlk45345353'
-	})
-	const handleRequest = () => {
-		request.POST('/login/login', formData.value).then((res: any) => {
-			console.log(res, 21)
-		})
+import { ref } from 'vue';
+type TFormData = {
+	userName: string
+	password: string
+}
+const loginForm = ref();
+const loginFormData = ref<TFormData>({
+	userName: '',
+	password: ''
+})
+const rules = {
+	userName: {
+		rules: [{
+			required: true,
+			errorMessage: '用户名不能为空'
+		}]
+	},
+	password: {
+		rules: [{
+			required: true,
+			errorMessage: '密码不能为空'
+		}]
 	}
+}
+const submit = () => {
+	loginForm.value.validate().then((res:TFormData) => {
+		console.log(res, 40)
+	})
+}
 </script>
 
 <style scoped lang="scss">
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: red;
+	.bg-content{
+		position: relative;
+		background: url(https://qingnang.sciai.com.cn/assets/login-bg-3M5Ylhcp.jpg);
+		background-size: cover;
+		width: 100vw;
+		height: 100vh;
+		.logo{
+			position: absolute;
+			height: 80rpx;
+			width: 200rpx;
+			top: 30rpx;
+			left: 30rpx;
+		}
+		:deep(.uni-forms-item__label){
+			width: 0 !important;
+			padding: 0 !important;
+			font-size: 0;
+		}
+		.login-form{
+			position: absolute;
+			background-color: #fff;
+			padding: 35rpx;
+			border-radius: 10rpx;
+			width: 70%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -70%);
+			.title{
+				text-align: center;
+				font-weight: bold;
+				margin-bottom: 25rpx;
+			}
+		}
 	}
 </style>

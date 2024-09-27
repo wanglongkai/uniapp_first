@@ -3,15 +3,50 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "基层医疗助手"
+			}
+		},
+		{
+			"path" : "responsive/top-window/top-window",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
+		},
+		{
+			"path" : "pages/chat/chat",
+			"style" : 
+			{
+				"navigationBarTitleText" : "基层医疗助手"
 			}
 		}
 	],
+	"topWindow": {
+	    "path": "responsive/top-window.vue",
+	    "style": {
+	      "height": "44px"
+	    }
+	},
+	"leftWindow": {
+	    "path": "responsive/top-window.vue",
+	    "style": {
+	      "width": "300px"
+	    }
+	},
+	"rightWindow": {
+	    "path": "responsive/top-window.vue",
+	    "style": {
+	     "width": "300px"
+	    }
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarBackgroundColor": "#f82f80",
+		"backgroundColor": "#F8F8F8",
+		"topWindow": true,
+		"leftWindow": true,
+		"rightWindow": true
 	},
 	"uniIdRouter": {}
 }

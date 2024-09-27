@@ -1,5 +1,5 @@
 
-import { toast, clearStorageSync, getStorageSync, useRouter } from '@/utils/utils'
+import { toast } from '@/utils/utils'
 import { BASE_URL } from '@/config/index'
 import RequestManager from '@/http/requestHelper.ts'
 
@@ -15,7 +15,6 @@ const baseRequest = async (url : string, method : TMethod, data = {}, loading = 
 		return false
 	}
 	const header : any = {}
-	header.token = getStorageSync('token') || '';
 
 	loading && uni.showLoading({ title: 'loading' });
 
@@ -32,12 +31,7 @@ const baseRequest = async (url : string, method : TMethod, data = {}, loading = 
 			success: (successData) => {
 				const res : any = successData.data
 				if (successData.statusCode == 200) {
-					if (res.resultCode == 'PA-G998') {
-						clearStorageSync()
-						useRouter('/pages/login/index', 'reLaunch')
-					} else {
-						resolve(res.data)
-					}
+					resolve(res)
 				} else {
 					toast('数据错误，请检查响应结构')
 					reject(res)
